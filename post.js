@@ -22,7 +22,7 @@
 
 
 const form = document.getElementById('rsvpForm');
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTujIq6rUPrOgHy8MCjTA3MlHhU4Gz2H4MfyCzxEc-NElPfBc4fBnrPMpaSY5SGzFi/exec"'; 
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTujIq6rUPrOgHy8MCjTA3MlHhU4Gz2H4MfyCzxEc-NElPfBc4fBnrPMpaSY5SGzFi/exec'; 
 
 form.addEventListener('submit', e => {
   e.preventDefault(); // evitar submit normal
