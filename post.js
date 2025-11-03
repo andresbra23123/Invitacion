@@ -1,18 +1,32 @@
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSiCRsRQKr0NB9IWpPmKsUPbHKZFGj0-vCoCDU0PgCVFLdrcsp7n-YcNMwIbcPCqLJ/exec';
 const form = document.getElementById('rsvpForm');
 const submitButton = form.querySelector('button[type="submit"]');
-const messageContainer = document.getElementById('rsvpMessage');
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzTujIq6rUPrOgHy8MCjTA3MlHhU4Gz2H4MfyCzxEc-NElPfBc4fBnrPMpaSY5SGzFi/exec';
+// Función para mostrar mensaje tipo toast/modal
+function showMessage(msg) {
+  const msgBox = document.getElementById('rsvpMessage');
+  const msgText = document.getElementById('rsvpMessageText');
+  msgText.textContent = msg;
+  msgBox.style.display = 'flex';
+
+  setTimeout(() => {
+    msgBox.style.display = 'none';
+  }, 3000);
+}
+
+document.getElementById('rsvpMessageClose').addEventListener('click', () => {
+  document.getElementById('rsvpMessage').style.display = 'none';
+});
 
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  // Deshabilitar botón y mostrar spinner
   submitButton.disabled = true;
   const originalText = submitButton.innerHTML;
   submitButton.innerHTML = 'Enviando <span class="spinner"></span>';
-  messageContainer.innerHTML = ''; // limpiar mensaje previo
 
   const data = new URLSearchParams(new FormData(form));
+console.log(data.toString());
 
   fetch(SCRIPT_URL, {
     method: 'POST',
@@ -21,19 +35,20 @@ form.addEventListener('submit', e => {
   .then(res => res.text())
   .then(result => {
     if(result === "OK") {
-      messageContainer.innerHTML = `<div style="padding:1em; background-color:#d4edda; color:#155724; border-radius:8px; display:inline-block;">
-                                      ¡Gracias por confirmar tu asistencia!
-                                    </div>`;
+      showMessage("¡Gracias por confirmar tu asistencia!");
       form.reset();
     } else {
-      messageContainer.innerHTML = `<div style="padding:1em; background-color:#f8d7da; color:#721c24; border-radius:8px; display:inline-block;">
-                                      Error al enviar: ${result}
-                                    </div>`;
+      showMessage("Error al enviar: " + result);
     }
   })
   .catch(err => {
-    messageContainer.innerHTML = `<div style="padding:1em; background-color:#f8d7da; color:#721c24; border-radius:8px; display:inline-block;">
-                                    Error al enviar: ${err}
-                                  </div>`;
+    showMessage("Error al enviar: " + err);
+  })
+  .finally(() => {
+    // Restaurar botón
+    submitButton.disabled = false;
+    submitButton.innerHTML = originalText;
   });
 });
+
+

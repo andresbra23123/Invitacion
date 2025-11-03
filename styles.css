@@ -1,5 +1,3 @@
-
-
 * {
     margin: 0;
     padding: 0;
@@ -20,9 +18,12 @@ body {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
 .spinner {
-    border: 2px solid #f3f3f3; /* gris claro */
-    border-top: 2px solid #333; /* color del spinner */
+    border: 2px solid #f3f3f3;
+    /* gris claro */
+    border-top: 2px solid #333;
+    /* color del spinner */
     border-radius: 50%;
     width: 16px;
     height: 16px;
@@ -30,12 +31,18 @@ body {
     display: inline-block;
     vertical-align: middle;
     margin-left: 8px;
-  }
+}
 
-  @keyframes spin {
-    0% { transform: rotate(0deg);}
-    100% { transform: rotate(360deg);}
-  }
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 p {
     text-align: center;
     margin: 1em;
@@ -543,7 +550,7 @@ header.cover-text-bottom .hero-overlay {
 }
 
 .signature {
-    font-family: var(--font-names),amsterdam;
+    font-family: var(--font-names), amsterdam;
     font-size: 1rem;
     margin-top: 15px;
 
@@ -553,6 +560,30 @@ header.cover-text-bottom .hero-overlay {
     display: none;
 }
 
+.rsvp-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #660b19; /* mismo color de tus botones */
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.rsvp-message button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
 
 
 
@@ -958,4 +989,3 @@ textarea::placeholder {
         display: none;
     }
 }
-
