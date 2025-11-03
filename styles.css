@@ -560,29 +560,45 @@ header.cover-text-bottom .hero-overlay {
     display: none;
 }
 
+/* Estilo por defecto (desktop) */
 .rsvp-message {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #660b19; /* mismo color de tus botones */
-  color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #660b19;
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .rsvp-message button {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.2rem;
-  cursor: pointer;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Ajuste para móviles */
+@media (max-width: 600px) {
+    .rsvp-message {
+        padding: 1.5rem 2.5rem;
+        /* más espacio */
+        font-size: 1.2rem;
+        /* texto más grande */
+    }
+
+    .rsvp-message button {
+        font-size: 1.5rem;
+        /* botones más grandes */
+    }
 }
 
 
