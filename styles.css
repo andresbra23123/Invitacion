@@ -1,0 +1,946 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body), sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+.hero {
+    height: 70vh;
+    background: url('/app/invitations/68db0e87287c6/cover.webp?v=1759186567') center/cover no-repeat;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+p {
+    text-align: center;
+    margin: 1em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    margin: 1rem auto;
+
+}
+
+h3 {
+    text-align: center;
+    margin: 1em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    margin-top: 10px;
+
+}
+
+h4 {
+    margin: 1em auto;
+}
+
+.nombre_invitado {
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+.seccion {
+
+    max-width: 90%;
+    margin: 2em auto;
+}
+
+.hero {
+    position: relative;
+    /* ya lo tenías, asegúrate */
+    height: 70vh;
+    background: url('/app/invitations/68db0e87287c6/cover.webp?v=1759186567') center/cover no-repeat;
+    overflow: hidden;
+}
+
+/* capa oscura uniforme sobre la imagen */
+/* 2) Oscurecimiento en el header cuando tiene cover-text-top */
+.hero.cover-text-top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1), transparent);
+}
+
+.hero.cover-text-top {
+    position: relative;
+    /* para que el ::before se posicione dentro */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    /* por si acaso */
+}
+
+
+/* 3) en middle */
+.hero.cover-text-middle {
+    position: relative;
+    /* para que el ::before se posicione dentro */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    /* por si acaso */
+}
+
+/* superpone oscuridad sobre todo el cover */
+.hero.cover-text-middle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* asegúrate de que el contenido quede por encima */
+.hero.cover-text-middle>* {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* 4) Oscurecimiento en el header cuando tiene cover-text-bottom */
+.hero.cover-text-bottom::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1), transparent);
+}
+
+.hero.cover-text-bottom {
+    position: relative;
+    /* para que el ::before se posicione dentro */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    /* por si acaso */
+}
+
+
+/* solo el contenedor de texto, sin fondo */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+}
+
+
+
+
+header.cover-text-top .hero-overlay {
+    top: 40px !important;
+    bottom: auto;
+}
+
+header.cover-text-middle .hero-overlay {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+}
+
+header.cover-text-bottom .hero-overlay {
+    top: auto;
+    bottom: 60px;
+}
+
+
+.hero-title {
+    font-family: var(--font-names), sans-serif;
+    font-size: var(--font-size-names);
+    margin: 0 auto;
+    line-height: 75%;
+}
+
+
+.hero-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    margin-top: 1.5em;
+    letter-spacing: .2em;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: #fff;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    20% {
+        transform: translateY(10px);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(8px);
+    }
+
+    80% {
+        transform: translateY(0);
+    }
+}
+
+.animar-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all .6s ease;
+}
+
+.animar-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--btn-color);
+    color: #fff;
+    padding: 1em 2em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+}
+
+.btn.outline {
+    background: transparent;
+    border: 2px solid var(--btn-color);
+    color: var(--btn-color);
+}
+
+.radio-group label {
+    margin-right: 1em;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+/* Estilos modernos para radio buttons */
+.modern-radio {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin: 1rem 0;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modern-radio-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #333;
+}
+
+.modern-radio-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.modern-radio-checkmark {
+    position: relative;
+    height: 24px;
+    width: 24px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 50%;
+    margin-right: 12px;
+    transition: all 0.3s ease;
+}
+
+.modern-radio-item:hover .modern-radio-checkmark {
+    border-color: var(--btn-color);
+    transform: scale(1.1);
+}
+
+.modern-radio-item input:checked~.modern-radio-checkmark {
+    background-color: var(--btn-color);
+    border-color: var(--btn-color);
+}
+
+.modern-radio-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+.modern-radio-item input:checked~.modern-radio-checkmark:after {
+    display: block;
+}
+
+.text-area {
+    height: 120px;
+}
+
+.footer {
+    text-align: center;
+    padding: 0.5em 1em;
+    color: #666;
+}
+
+/* Modal */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.modal-backdrop.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 1.5em;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    position: relative;
+    animation: fadeIn .3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: .5em;
+    right: .5em;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* ---------- Regalos apilados ---------- */
+.regalos-buttons .btn.block {
+    display: block;
+    width: 200px;
+    margin: .5em auto;
+}
+
+/* Botones de regalos con ancho uniforme */
+.btn.block {
+    display: block;
+    width: 250px;
+    margin: .5em auto;
+    text-align: center;
+}
+
+/* ---------- Formulario RSVP ---------- */
+.rsvp-form {
+    width: 100%;
+    max-width: 450px;
+    margin: 2em auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+
+.rsvp-form .rsvp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.rsvp-form input,
+.rsvp-form textarea {
+    padding: 1rem;
+    border: 2px solid #e1e5e9;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.rsvp-form input:focus,
+.rsvp-form textarea:focus {
+    outline: none;
+    border-color: var(--btn-color);
+    background: transparent;
+    box-shadow: 0 0 0 3px rgba(var(--btn-color), 0.1);
+}
+
+.rsvp-form button {
+    align-self: center;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.rsvp-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.btn-calendar {
+    background: #fff;
+    color: #555;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    text-transform: capitalize;
+    margin-top: 3em;
+}
+
+.btn-calendar svg {
+    color: #555;
+}
+
+
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 0.75em;
+    margin-top: 1.5em;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70px;
+    /* ancho fijo para evitar que se estiren por el texto */
+    text-align: center;
+}
+
+.countdown-item span {
+    background-color: var(--btn-color);
+    color: white;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.3em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+.countdown-item label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    white-space: nowrap;
+}
+
+
+.invitadoinicial {
+    margin-top: 60px;
+}
+
+.teesperamosfinal {
+    font-size: 2rem;
+    margin-bottom: 0px !important;
+}
+
+.signature {
+    font-family: var(--font-names),amsterdam;
+    font-size: 1rem;
+    margin-top: 15px;
+
+}
+
+.split-left {
+    display: none;
+}
+
+
+
+
+@media (min-width: 768px) {
+    .split-screen {
+        display: flex;
+        height: 100vh;
+    }
+
+    .split-right {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        overflow-y: auto;
+        padding: 1em;
+        background-color: #fafafa;
+    }
+
+    .split-right>.mobile-preview {
+        max-width: 400px;
+        width: 100%;
+        background-color: var(--background-color-body);
+        box-sizing: border-box;
+    }
+}
+
+
+/* Overlay de selección de música */
+#musicOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    flex-direction: column;
+    /* apila los botones */
+    align-items: center;
+    /* centra horizontalmente */
+    justify-content: center;
+    /* centra verticalmente */
+    z-index: 2000;
+    padding: 1em;
+    /* para que no toquen los bordes */
+
+}
+
+#musicOverlay .music-btn {
+    width: 80%;
+    /* 80% del ancho del overlay */
+    max-width: 350px;
+    /* pero como máximo 350px */
+    padding: 1.5rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    background-color: var(--btn-color);
+    margin: 0.5em 0;
+    /* separación vertical entre botones */
+    text-transform: uppercase;
+
+}
+
+#musicOverlay .music-btn.no {
+    background-color: #555;
+}
+
+/* Control de música flotante */
+#floatingMusicControl {
+    position: fixed;
+    right: 0;
+    top: 540px;
+    z-index: 2002;
+}
+
+@media (max-width: 768px) {
+    #floatingMusicControl {
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.music-control-btn {
+    width: 50px;
+    height: 50px;
+    background: var(--btn-color);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px 0 0 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .music-control-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+    }
+}
+
+.music-control-btn:hover {
+    background: var(--btn-color);
+    opacity: 0.8;
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.music-control-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* ——— Fuerza la flecha siempre abajo ——— */
+.hero .scroll-down {
+    position: absolute;
+    bottom: 1em !important;
+    top: auto !important;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    /* por encima del overlay */
+}
+
+/* ——— ANIMACIONES PHOTOAPP ——— */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes photoFloat1 {
+
+    0%,
+    100% {
+        transform: rotate(15deg) translateY(0px);
+    }
+
+    50% {
+        transform: rotate(15deg) translateY(-5px);
+    }
+}
+
+@keyframes photoFloat2 {
+
+    0%,
+    100% {
+        transform: rotate(-10deg) translateY(0px);
+    }
+
+    50% {
+        transform: rotate(-10deg) translateY(-3px);
+    }
+}
+
+@keyframes photoFloat3 {
+
+    0%,
+    100% {
+        transform: rotate(25deg) translateY(0px);
+    }
+
+    50% {
+        transform: rotate(25deg) translateY(-4px);
+    }
+}
+
+/* ——— ANIMACIONES REGALO ——— */
+@keyframes giftFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes giftBow {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* ——— GALERÍA DE FOTOS ——— */
+.photo-gallery {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 1em 0 0 0;
+}
+
+.photo-row {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 1em;
+    flex-wrap: wrap;
+}
+
+.photo-row:last-child {
+    margin-bottom: 0;
+}
+
+.photo-item {
+    flex: 0 0 calc(50% - 0.5em);
+    max-width: calc(50% - 0.5em);
+    width: calc(50% - 0.5em);
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.photo-item.double-width {
+    flex: 0 0 calc(100% - 0.5em);
+    max-width: calc(100% - 0.5em);
+    width: calc(100% - 0.5em);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.photo-item img:hover {
+    transform: scale(1.05);
+}
+
+/* ——— ANIMACIONES DE ENTRADA ——— */
+.slide-in-left {
+    transform: translateX(-100px);
+}
+
+.slide-in-right {
+    transform: translateX(100px);
+}
+
+.slide-in-left.visible,
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .slide-in-left {
+        transform: translateX(-20px);
+    }
+
+    .slide-in-right {
+        transform: translateX(20px);
+    }
+}
+
+
+input {
+    font-size: 16px;
+}
+
+input::placeholder {
+    font-size: 14px;
+}
+
+textarea::placeholder {
+    font-size: 14px;
+}
+
+.btn-activar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 220px;
+    background: #28a745;
+    color: #fff;
+    padding: 1em 1.5em;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    z-index: 2000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-editar {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 220px;
+    background: #141414;
+    border: solid 1px #fff;
+    color: #fff;
+    padding: 1em 1.5em;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    z-index: 2000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el itinerario */
+.itinerary-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.itinerary-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.itinerary-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-color);
+    border-radius: 50%;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.itinerary-icon img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: brightness(0.8);
+}
+
+.itinerary-content {
+    flex: 1;
+    text-align: left;
+}
+
+.itinerary-time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.itinerary-title {
+    font-size: 1rem;
+    color: #666;
+}
+
+.itinerary-line {
+    position: absolute;
+    left: 30px;
+    top: 60px;
+    width: 3px;
+    height: 2rem;
+    background: linear-gradient(to bottom, var(--btn-color), transparent);
+}
+
+@media (max-width: 768px) {
+    .itinerary-item {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .itinerary-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .itinerary-content {
+        text-align: center;
+    }
+
+    .itinerary-line {
+        display: none;
+    }
+}
+
