@@ -142,25 +142,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // document.querySelector(".rsvp-form").addEventListener("submit", async function(e) {
-    //     e.preventDefault();
-    //     const form = e.target;
-    //     const data = new FormData(form);
-        
-    //     try {
-    //       const response = await fetch(form.action, { method: "POST", body: data });
+    // ============== 6. PRE-LLENAR NOMBRE DESDE URL ==============
+    // Leer el parámetro 'nombre' o 'invitado' de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const nombreInvitado = urlParams.get('nombre') || urlParams.get('invitado');
+    
+    if (nombreInvitado) {
+        const guestNameInput = document.getElementById('guest_name');
+        if (guestNameInput) {
+            // Decodificar el nombre (por si tiene espacios o caracteres especiales)
+            guestNameInput.value = decodeURIComponent(nombreInvitado);
+            
+            // Opcional: mostrar un mensaje personalizado
+            const invitadoSection = document.querySelector('.invitadoinicial h2:last-child');
+            if (invitadoSection) {
+                invitadoSection.innerHTML = `<strong>${decodeURIComponent(nombreInvitado)}</strong>`;
+            }
+        }
+    }
 
-    //       console.log(response);
-    //       if (response.ok) {
-    //         alert("🎉 ¡Gracias por confirmar tu asistencia!");
-    //         form.reset();
-    //       } else {
-    //         alert("Hubo un problema al enviar el formulario.");
-    //       }
-    //     } catch (error) {
-    //       alert("Error de conexión. Intenta de nuevo más tarde.");
-    //     }
-    //   });
+
 
     // ============== 4. CONTROL DE MÚSICA ==============
     //musica    

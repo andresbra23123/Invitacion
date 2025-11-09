@@ -360,7 +360,7 @@ header.cover-text-bottom .hero-overlay {
 
 .footer {
     text-align: center;
-    padding: 0.5em 1em;
+    padding: 0.2em 1em;
     color: #666;
 }
 
@@ -553,7 +553,7 @@ header.cover-text-bottom .hero-overlay {
 
 .signature {
     font-family: var(--font-names), amsterdam;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin-top: 15px;
 
 }
