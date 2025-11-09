@@ -148,16 +148,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const nombreInvitado = urlParams.get('nombre') || urlParams.get('invitado');
     
     if (nombreInvitado) {
-        const guestNameInput = document.getElementById('guest_name');
-        if (guestNameInput) {
-            // Decodificar el nombre (por si tiene espacios o caracteres especiales)
-            guestNameInput.value = decodeURIComponent(nombreInvitado);
-            
-            // Opcional: mostrar un mensaje personalizado
-            const invitadoSection = document.querySelector('.invitadoinicial h2:last-child');
-            if (invitadoSection) {
-                invitadoSection.innerHTML = `<strong>${decodeURIComponent(nombreInvitado)}</strong>`;
+        // Función para prellenar el nombre
+        const prellenarNombre = () => {
+            const guestNameInput = document.getElementById('guest_name');
+            if (guestNameInput) {
+                // Decodificar el nombre (por si tiene espacios o caracteres especiales)
+                const nombreDecodificado = decodeURIComponent(nombreInvitado);
+                guestNameInput.value = nombreDecodificado;
+                
+                // Opcional: mostrar un mensaje personalizado
+                const invitadoSection = document.querySelector('.invitadoinicial h2:last-child');
+                if (invitadoSection) {
+                    invitadoSection.innerHTML = `<strong>${nombreDecodificado}</strong>`;
+                }
+                return true;
             }
+            return false;
+        };
+        
+        // Intentar prellenar inmediatamente
+        if (!prellenarNombre()) {
+            // Si no está disponible, esperar un poco más
+            setTimeout(() => {
+                prellenarNombre();
+            }, 100);
         }
     }
 
