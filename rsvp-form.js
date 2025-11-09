@@ -1,7 +1,6 @@
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSiCRsRQKr0NB9IWpPmKsUPbHKZFGj0-vCoCDU0PgCVFLdrcsp7n-YcNMwIbcPCqLJ/exec';
-const form = document.getElementById('rsvpForm');
-const submitButton = form.querySelector('button[type="submit"]');
+
 // Función para mostrar mensaje tipo toast/modal
 function showMessage(msg) {
   const msgBox = document.getElementById('rsvpMessage');
@@ -14,40 +13,54 @@ function showMessage(msg) {
   }, 3000);
 }
 
-document.getElementById('rsvpMessageClose').addEventListener('click', () => {
-  document.getElementById('rsvpMessage').style.display = 'none';
-});
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('rsvpForm');
+  if (!form) {
+    console.error('Formulario RSVP no encontrado');
+    return;
+  }
+  
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (!submitButton) {
+    console.error('Botón de envío no encontrado');
+    return;
+  }
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
+  document.getElementById('rsvpMessageClose').addEventListener('click', () => {
+    document.getElementById('rsvpMessage').style.display = 'none';
+  });
 
-  submitButton.disabled = true;
-  const originalText = submitButton.innerHTML;
-  submitButton.innerHTML = 'Enviando <span class="spinner"></span>';
+  form.addEventListener('submit', e => {
+    e.preventDefault();
 
-  const data = new URLSearchParams(new FormData(form));
-console.log(data.toString());
+    submitButton.disabled = true;
+    const originalText = submitButton.innerHTML;
+    submitButton.innerHTML = 'Enviando <span class="spinner"></span>';
 
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: data
-  })
-  .then(res => res.text())
-  .then(result => {
-    if(result === "OK") {
-      showMessage("¡Gracias por confirmar tu asistencia!");
-      form.reset();
-    } else {
-      showMessage("Error al enviar: " + result);
-    }
-  })
-  .catch(err => {
-    showMessage("Error al enviar: " + err);
-  })
-  .finally(() => {
-    // Restaurar botón
-    submitButton.disabled = false;
-    submitButton.innerHTML = originalText;
+    const data = new URLSearchParams(new FormData(form));
+    console.log(data.toString());
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: data
+    })
+    .then(res => res.text())
+    .then(result => {
+      if(result === "OK") {
+        showMessage("¡Gracias por confirmar tu asistencia!");
+        form.reset();
+      } else {
+        showMessage("Error al enviar: " + result);
+      }
+    })
+    .catch(err => {
+      showMessage("Error al enviar: " + err);
+    })
+    .finally(() => {
+      // Restaurar botón
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalText;
+    });
   });
 });
 
